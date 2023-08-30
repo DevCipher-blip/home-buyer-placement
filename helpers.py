@@ -7,6 +7,8 @@ def read_input_data(filename):
   with open(filename, 'r') as file:
     for line in file:
       parts = line.split()
+      if not parts:
+        continue
       data_dict = {}
 
       data_dict[parts[0]] = parts[1]
@@ -27,9 +29,6 @@ def read_input_data(filename):
 def write_output_data(filename, selections):
   with open(filename, 'w') as file:
     for neighborhood, assigned_buyers in selections.items():
-      assigned_buyers.sort(key=lambda x: x[1], reverse=True)
-
-      # Write output data to file in expected format
       file.write(f"{neighborhood}: {' '.join([f'{h}({s})' for h, s in assigned_buyers])}\n")
 
 def calculate_buyer_scores(neighborhoods, home_buyers):
@@ -53,13 +52,6 @@ def calculate_buyer_scores(neighborhoods, home_buyers):
     buyers_scores[buyer['H']].append(buyer['prefs'])
     
   return buyers_scores
-
-def generate_selection(neighborhood, buyer, buyer_value):
-  return {
-    'neighborhood': neighborhood['N'],
-    'buyer': buyer,
-    'score': [b['score'] for b in buyer_value[:-1] if b['neighborhood'] == neighborhood['N']][0]
-  }
 
 def run_tests():
   test_suite = unittest.TestSuite()
