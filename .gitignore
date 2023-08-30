@@ -1,0 +1,32 @@
+# Local environments
+.venv/
+venv/
+env/
+project_venv/
+node_modules/
+
+# Python caches and build output
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Coverage, logs, scratch
+.coverage
+htmlcov/
+coverage/
+*.log
+logs/
+tmp/
+
+# Secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+
+.DS_Store
